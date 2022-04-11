@@ -1,32 +1,27 @@
-reg = input("Cole todo o arquivo: ")
+regDestinatario = []
+regNotaFiscal = []
+regInfo = False
+info = False
 
-registros = {"embarcador": "501", "destinatario": "503", "nota_fiscal": "505"}
+while regInfo == False:
+    inputReg = input("Cole UMA linha de registro por vez: ")
+    if inputReg[0:3] == ("503"):
+        regDestinatario.append(inputReg)
+        print ("Registro de destinatario validado")
+    elif inputReg[0:3] == ("505"):
+        regNotaFiscal.append(inputReg)
+        print ("Registro de nota fiscal validado")
+    else:
+        print ("Registro invalido, verifique")
+    quitReg = input("Deseja adicionar um novo registro? ")
+    if quitReg == ("s"):
+        pass
+    elif quitReg == ("n"):
+        break
+    else:
+        print ("Opção invalida")
 
-print (registros["destinatario"])
+while info == False:
+    inpInfo = input("Digite o que precisa saber: CNPJ do Remetente (CR), Nota Fiscal (NF) ")
 
-cabInt = reg[0:320]
 
-if cabInt[0:3] == "000":
-    print("Cabecalho validado")
-else:
-   print("Cabecalho invalido")
-
-# posInicial = input("Informe a nota fiscal que deseja: ")
-# posInicial = int(posInicial)
-# posInicial = posInicial - 1
-# posFinal = input("Informe a posição final do que precisa encontrar: ")
-# posFinal = int(posFinal)
-# posFinal = posFinal - 1
-# print (reg[posInicial:posFinal])
-
-standby = input("Deseja realizar uma nova consulta? ")
-
-while standby == "s" or standby == "S" or standby == "Sim" or standby == "sim":
-    posInicial = input("Informe a posição inicial do que precisa encontrar: ")
-    posInicial = int(posInicial)
-    posInicial = posInicial - 1
-    posFinal = input("Informe a posição final do que precisa encontrar: ")
-    posFinal = int(posFinal)
-    posFinal = posFinal - 1
-    print (reg[posInicial:posFinal])
-    standby = input("Deseja realizar uma nova consulta? ")
