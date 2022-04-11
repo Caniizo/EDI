@@ -1,4 +1,11 @@
-def myDomain (y):
-    return y.split("br") [1]
+class EDI(object):
+    def __init__(self, tpArqv):
+        self.tpArqv = tpArqv
 
-print (myDomain("Meu e-mail é bruno.carneiro@tbl.com.br"))
+Tramontina = EDI(tpArqv="CONEMB")
+Beirario = EDI(tpArqv="DOCCOB")
+
+print (Tramontina.tpArqv)
+print (Beirario.tpArqv)
+
+help(len)
