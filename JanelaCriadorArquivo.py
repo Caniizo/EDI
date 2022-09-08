@@ -60,7 +60,7 @@ y = 0
 
 root = Tk()
 root.title("Gerador de Arquivos 3M")
-root.iconbitmap("C:/DEV/StudioCode/Gerador.ico")
+#root.iconbitmap("C:/DEV/StudioCode/Gerador.ico")
 root.geometry("700x350")
 
 def clique():

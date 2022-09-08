@@ -15,9 +15,11 @@ for x in logistica:
 
 y = 0
 
-print ("TI")
+print ("\nTI")
 for x in ti:
     numeroCompleto = "Nada"
     numeroCompleto = str(ti[y]) + str (" ") + str(tiRamais[y])
     print (numeroCompleto)
     y += 1
+
+input("Adicionar opção de adicionar Ramais ^.^ ")
