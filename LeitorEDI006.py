@@ -8,16 +8,12 @@ from datetime import datetime
 from tkinter.filedialog import askopenfilename
 
 root = Tk()
-root.title("Leitor de Arquivos EDI - Posicoes conforme PROCEDA!")
+root.title("Leitor de Arquivos EDI - Posicoes conforme PROCEDA! (Beta)")
 #root.iconbitmap("C:/DEV/StudioCode/Gerador.ico")
 #root.geometry("700x350")
 
 quantidadeLinhas_arquivo = 0
 linhasArquivo = []
-
-
-
-
 
 def escolheArquivo(): # Informar posições manuais!
     global quantidadeLinhas_arquivo
@@ -26,7 +22,6 @@ def escolheArquivo(): # Informar posições manuais!
     global posicaoInicial_entrada
     global posicaoFinal_entrada
     caminhoEspecificado = askopenfilename()
-    print (caminhoEspecificado)
     leitorArquivo = open(caminhoEspecificado, "r")
     telaInicial.grid_forget()
     for linha in leitorArquivo:
@@ -67,7 +62,6 @@ def confirmaDados(): # Informações para posição e registro manuais!!!
     posicaoFinal = "." + posicaoFinal
     registroEncontrado = Text(telaDados, wrap=NONE)
     registroEncontrado.grid(row=0, column=0)
-    print (linhasArquivo)
     contadorTag = 1.0
     for linha in linhasArquivo:
         if registro in linha[0:3]:
@@ -76,39 +70,105 @@ def confirmaDados(): # Informações para posição e registro manuais!!!
             registroEncontrado.tag_config("registro", background="yellow")
             contadorPosicao = str(contadorTag)
             contadorPosicao = contadorPosicao[:-2]
-            print (contadorPosicao + posicaoInicial)
-            print (contadorPosicao + posicaoFinal)
             contadorTag = contadorTag + 1
             registroEncontrado.tag_add("posicao", contadorPosicao + posicaoInicial, contadorPosicao + posicaoFinal)
             registroEncontrado.tag_config("posicao", background="red")
 
 def confirmaDescricao(): #Informação para DROPDOWN | Dados presetados
-    definirInformações.grid(row=0, column=0)
-    telaDados.grid(row=0, column=1)
-    registro = registro_entrada.get()
-    registro = str(registro)
-    posicaoInicial = posicaoInicial_entrada.get()
-    posicaoInicial = int(posicaoInicial) -1
-    posicaoInicial = str(posicaoInicial)
-    posicaoInicial = "." + posicaoInicial
-    posicaoFinal = posicaoFinal_entrada.get()
-    posicaoFinal = "." + posicaoFinal
-    registroEncontrado = Text(telaDados, wrap=NONE)
-    registroEncontrado.grid(row=0, column=0)
-    print (linhasArquivo)
-    contadorTag = 1.0
-    for linha in linhasArquivo:
-        if registro in linha[0:3]:
-            registroEncontrado.insert(INSERT, linha + "\n")
-            registroEncontrado.tag_add("registro", contadorTag, contadorTag + 0.3)
-            registroEncontrado.tag_config("registro", background="yellow")
-            contadorPosicao = str(contadorTag)
-            contadorPosicao = contadorPosicao[:-2]
-            print (contadorPosicao + posicaoInicial)
-            print (contadorPosicao + posicaoFinal)
-            contadorTag = contadorTag + 1
-            registroEncontrado.tag_add("posicao", contadorPosicao + posicaoInicial, contadorPosicao + posicaoFinal)
-            registroEncontrado.tag_config("posicao", background="red")    
+    # Abrir um switch ou if e validar qual opção do dropdown
+    # Registro 523 P 41 a 56 | Valor do Frete
+    if configDropdown.get() == "Valor do CT-e":
+        definirInformações.grid(row=0, column=0)
+        telaDados.grid(row=0, column=1)
+        registro = "523"
+        posicaoInicial = ".40"
+        posicaoFinal = ".56"
+        registroEncontrado = Text(telaDados, wrap=NONE)
+        registroEncontrado.grid(row=0, column=0)
+        contadorTag = 1.0    
+        for linha in linhasArquivo:
+            if registro in linha[0:3]:
+                registroEncontrado.insert(INSERT, linha + "\n")
+                registroEncontrado.tag_add("registro", contadorTag, contadorTag + 0.3)
+                registroEncontrado.tag_config("registro", background="yellow")
+                contadorPosicao = str(contadorTag)
+                #1.0
+                contadorPosicao = contadorPosicao[:-2]
+                #1
+                contadorTag = contadorTag + 1
+                #1.0 + 1 = 2.0
+                registroEncontrado.tag_add("posicao", contadorPosicao + posicaoInicial, contadorPosicao + posicaoFinal)
+                #1 + 
+                registroEncontrado.tag_config("posicao", background="red")    
+    elif configDropdown.get() == "Numero do CT-e":
+        definirInformações.grid(row=0, column=0)
+        telaDados.grid(row=0, column=1)
+        registro = "522"
+        posicaoInicial = ".18"
+        posicaoFinal = ".24"
+        registroEncontrado = Text(telaDados, wrap=NONE)
+        registroEncontrado.grid(row=0, column=0)
+        contadorTag = 1.0    
+        for linha in linhasArquivo:
+            if registro in linha[0:3]:
+                registroEncontrado.insert(INSERT, linha + "\n")
+                registroEncontrado.tag_add("registro", contadorTag, contadorTag + 0.3)
+                registroEncontrado.tag_config("registro", background="yellow")
+                contadorPosicao = str(contadorTag)
+                #1.0
+                contadorPosicao = contadorPosicao[:-2]
+                #1
+                contadorTag = contadorTag + 1
+                #1.0 + 1 = 2.0
+                registroEncontrado.tag_add("posicao", contadorPosicao + posicaoInicial, contadorPosicao + posicaoFinal)
+                #1 + 
+                registroEncontrado.tag_config("posicao", background="red")
+    elif configDropdown.get() == "Data de Emissão do CT-e":
+        definirInformações.grid(row=0, column=0)
+        telaDados.grid(row=0, column=1)
+        registro = "522"
+        posicaoInicial = ".30"
+        posicaoFinal = ".38"
+        registroEncontrado = Text(telaDados, wrap=NONE)
+        registroEncontrado.grid(row=0, column=0)
+        contadorTag = 1.0    
+        for linha in linhasArquivo:
+            if registro in linha[0:3]:
+                registroEncontrado.insert(INSERT, linha + "\n")
+                registroEncontrado.tag_add("registro", contadorTag, contadorTag + 0.3)
+                registroEncontrado.tag_config("registro", background="yellow")
+                contadorPosicao = str(contadorTag)
+                #1.0
+                contadorPosicao = contadorPosicao[:-2]
+                #1
+                contadorTag = contadorTag + 1
+                #1.0 + 1 = 2.0
+                registroEncontrado.tag_add("posicao", contadorPosicao + posicaoInicial, contadorPosicao + posicaoFinal)
+                #1 + 
+                registroEncontrado.tag_config("posicao", background="red")
+    elif configDropdown.get() == "Notas Fiscais":
+        definirInformações.grid(row=0, column=0)
+        telaDados.grid(row=0, column=1)
+        registro = "524"
+        posicaoInicial = ".17"
+        posicaoFinal = ".27"
+        registroEncontrado = Text(telaDados, wrap=NONE)
+        registroEncontrado.grid(row=0, column=0)
+        contadorTag = 1.0    
+        for linha in linhasArquivo:
+            if registro in linha[0:3]:
+                registroEncontrado.insert(INSERT, linha + "\n")
+                registroEncontrado.tag_add("registro", contadorTag, contadorTag + 0.3)
+                registroEncontrado.tag_config("registro", background="yellow")
+                contadorPosicao = str(contadorTag)
+                #1.0
+                contadorPosicao = contadorPosicao[:-2]
+                #1
+                contadorTag = contadorTag + 1
+                #1.0 + 1 = 2.0
+                registroEncontrado.tag_add("posicao", contadorPosicao + posicaoInicial, contadorPosicao + posicaoFinal)
+                #1 + 
+                registroEncontrado.tag_config("posicao", background="red")
 
 def versao50():
     global quantidadeLinhas_arquivo
@@ -117,7 +177,6 @@ def versao50():
     global posicaoInicial_entrada
     global posicaoFinal_entrada
     caminhoEspecificado = askopenfilename()
-    print (caminhoEspecificado)
     leitorArquivo = open(caminhoEspecificado, "r")
     telaInicial.grid_forget()
     for linha in leitorArquivo:
@@ -141,7 +200,7 @@ telaDados = LabelFrame(root, text="Dados Destacados")
 definirInformações = LabelFrame(root,text="Registro e Posições")
 
 #OpcoesDropdown
-descricaoLayout = ["Numero do CT-e", "Data de Emissão do CT-e"]
+descricaoLayout = ["Numero do CT-e", "Data de Emissão do CT-e", "Valor do CT-e", "Notas Fiscais"]
 configDropdown = StringVar()
 configDropdown.set("Numero do CT-e")
 
